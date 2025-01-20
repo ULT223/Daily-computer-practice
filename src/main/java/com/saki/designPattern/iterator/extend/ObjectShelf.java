@@ -1,5 +1,6 @@
 package com.saki.designPattern.iterator.extend;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -11,6 +12,10 @@ public class ObjectShelf <T> implements Aggregate<T>{
 
     public ObjectShelf(List<T> objects) {
         this.objects = objects;
+    }
+
+    public ObjectShelf() {
+        this.objects = new ArrayList<T>();
     }
 
     /**

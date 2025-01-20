@@ -10,8 +10,12 @@ import java.util.List;
  */
 public class IteratorMain {
     public static void main(String[] args) {
-        List<Book> books = Arrays.asList(new Book("A"), new Book("B"), new Book("C"), new Book("D"), new Book("E"));
-        ObjectShelf<Book> objectShelf = new ObjectShelf<>(books);
+        ObjectShelf<Book> objectShelf = new ObjectShelf<>();
+        objectShelf.add(new Book("A"));
+        objectShelf.add(new Book("B"));
+        objectShelf.add(new Book("C"));
+        objectShelf.add(new Book("D"));
+        objectShelf.add(new Book("E"));
         Iterator<Book> iterator = objectShelf.iterator();
         while (iterator.hasNext()){
             Book book = iterator.next();
