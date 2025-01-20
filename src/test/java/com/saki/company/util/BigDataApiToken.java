@@ -9,7 +9,6 @@ public class BigDataApiToken {
     public static void main(String[] args) {
         String apiPrefix = "";
         String clientSecret = "";
-        String clientId = "";
         String apiTokenClient = new MD5().digestHex(apiPrefix+ DateUtil.format(DateUtil.date(), DatePattern.NORM_DATE_FORMAT) +  clientSecret);
         System.out.println(apiTokenClient);
     }
