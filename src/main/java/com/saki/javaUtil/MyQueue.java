@@ -5,6 +5,10 @@ import com.saki.entity.Element;
 import java.util.ArrayDeque;
 import java.util.LinkedList;
 import java.util.Queue;
+import java.util.concurrent.ArrayBlockingQueue;
+import java.util.concurrent.BlockingQueue;
+import java.util.concurrent.LinkedBlockingQueue;
+import java.util.concurrent.PriorityBlockingQueue;
 
 /**
  * 测试实现了Dequeue接口的java类
@@ -43,12 +47,74 @@ public class MyQueue {
         return linkedList;
     }
 
+    /**
+     * 阻塞队列练习
+     */
+    public static void testBlockingQueue(){
+        BlockingQueue<Element> arrayDeque = new ArrayBlockingQueue(10, false);
+        BlockingQueue<Element> linkedBlockingQueue = new LinkedBlockingQueue(10);
+        PriorityBlockingQueue<Element> priorityBlockingQueue = new PriorityBlockingQueue<>();
+        for (int i = 0; i < 10; i++)
+            arrayDeque.add(Element.builder().id(String.valueOf(i)).build());
+        Thread thread1 = new Thread(() -> {
+            while (!arrayDeque.isEmpty()){
+                try {
+                    Thread.sleep(1000);
+                    //poll队列空时放弃出队列
+                    System.out.println(arrayDeque.poll() + "出队列");
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+
+
+            try {
+                Thread.sleep(1000);
+                //take方法，当队列为空时，会阻塞
+                System.out.println(arrayDeque.take() + "出队列");
+
+                //poll队列空时放弃出队列
+                //System.out.println(arrayDeque.poll() + "出队列");
+
+                //remove方法，当队列为空时，会抛出异常
+//                System.out.println(arrayDeque.remove() + "出队列");
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        });
+        Thread thread2 = new Thread(() -> {
+            int i = 10;
+            while (i > 0){
+                try {
+                    Thread.sleep(1000);
+                    //offer方法，当队列满时，会放弃添加
+                    //System.out.println("添加元素" + i+ ":" + arrayDeque.offer(Element.builder().id(String.valueOf(i)).build()));
+
+                    //put方法，队列满时，会阻塞
+                    arrayDeque.put(Element.builder().id(String.valueOf(i)).build());
+
+                    //add方法，当队列满时，会抛出异常
+                    //arrayDeque.add(Element.builder().id(String.valueOf(i)).build());
+                    System.out.println("添加元素" + i);
+
+
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                i--;
+            }
+        });
+        thread1.start();
+        thread2.start();
+
+    }
+
     public static void testArrayQueue(){
         Queue<Element> arrayDeque = new ArrayDeque<>();
         arrayDeque.add(Element.builder().id("1").build());
     }
 
     public static void main(String[] args) {
-        testLinkedList();
+       testBlockingQueue();
     }
 }
