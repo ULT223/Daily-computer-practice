@@ -1,4 +1,4 @@
-package com.saki.javaUtil;
+package com.saki.javaUtil.base;
 
 import java.util.Optional;
 
