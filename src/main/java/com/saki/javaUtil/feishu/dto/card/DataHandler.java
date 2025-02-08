@@ -3,6 +3,7 @@ package com.saki.javaUtil.feishu.dto.card;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+import com.alibaba.fastjson.annotation.JSONField;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -41,11 +42,8 @@ public class DataHandler {
                 "                \"tag\": \"plain_text\"\n" +
                 "            }\n" +
                 "        }";
-        JSONObject jsonObject = JSONObject.parseObject(header);
-        Header headerObj = new Header();
-        headerObj.setTemplate(color);
-        headerObj.setTitle(jsonObject);
-        card.setHeader(headerObj);
+        Header header1 = JSONObject.parseObject(header, Header.class);
+        card.setHeader(header1);
         return card;
     }
 
