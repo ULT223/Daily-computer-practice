@@ -35,6 +35,33 @@
             <artifactId>easyexcel</artifactId>
             <version>2.2.10</version>
         </dependency>
+
+<!--        openAI依赖-->
+        <dependency>
+            <groupId>com.unfbx</groupId>
+            <artifactId>chatgpt-java</artifactId>
+            <version>1.0.14-beta1</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-simple</artifactId>
+            <version>1.7.36</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>3.12.0</version> <!-- 你可以选择最新版本 -->
+        </dependency>
+
+        <dependency>
+            <groupId>org.freeswitch.esl.client</groupId>
+            <artifactId>org.freeswitch.esl.client</artifactId>
+            <version>0.9.2</version>
+        </dependency>
+
+
     </dependencies>
 
 </project>
